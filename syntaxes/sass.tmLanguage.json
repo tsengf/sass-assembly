@@ -22,7 +22,7 @@
             "name": "comment.line.semicolon.assembly"
 		},
 	    "instructions": {
-		    "match": "\\b(?i)(BRA|NOP|LDG|STG|sub|inc|dec|jmp|call|ret)\\b",
+		    "match": "\\b(?i)(BRA|BSYNC|C22R|CALL|EXIT|IADD3|IMAD|ISETP|LDC|LDG|LEPC|NOP|S2R|SHF|STG)\\b",
 		    "name": "keyword.control keyword.control.assembly"
 		},
 	    "registers": {
