@@ -9,6 +9,12 @@
 		},
 		{
 			"include": "#instructions"
+		},
+		{
+			"include": "#labels"
+		},
+		{
+			"include": "#registers"
 		}
 	],
 	"repository": {
@@ -16,12 +22,12 @@
 			"patterns": [
 				{
 					"name": "comment.line.double-slash.sass",
-					"match": "//.*$",
+					"match": "//.*$"
 				},
 				{
 					"name": "comment.block.sass",
 					"begin": "/\\*",
-					"end": "\\*/",
+					"end": "\\*/"
 				}
 			]
 		},
@@ -29,27 +35,55 @@
 			"patterns": [
 				{
 					"name": "keyword.instruction.arithmetic.sass",
-					"match": "\\b(?i)(add)\\b",
+					"match": "\\b(?i)(add|iadd3|imad|viadd)\\b"
 				},
 				{
 					"name": "keyword.instruction.comparison.sass",
-					"match": "\\b(?i)(set)\\b",
+					"match": "\\b(?i)(isetp)\\b"
 				},
 				{
 					"name": "keyword.instruction.logic.sass",
-					"match": "\\b(?i)(and)\\b",
+					"match": "\\b(?i)(and|shf)\\b"
 				},
 				{
 					"name": "keyword.instruction.movement.sass",
-					"match": "\\b(?i)(mov)\\b",
+					"match": "\\b(?i)(c2sr|cs2r|ldg|ldc|mov|p2r|stg|s2r|uldc)\\b"
 				},
 				{
 					"name": "keyword.instruction.control.sass",
-					"match": "\\b(?i)(bra)\\b",
+					"match": "\\b(?i)(bra|call|exit)\\b"
+				},
+				{
+					"name": "keyword.instruction.synchronization.sass",
+					"match": "\\b(?i)(bsync)\\b"
 				},
 				{
 					"name": "keyword.instruction.misc.sass",
-					"match": "\\b(?i)(nop)\\b",
+					"match": "\\b(?i)(nop|bssy|lepc|yield)\\b"
+				}
+			]
+		},
+		"labels": {
+			"patterns": [
+			  {
+				"name": "entity.name.section.sass",
+				"match": "\\.L_[A-Za-z0-9_]+(?::)?"
+			  }
+			]
+		},
+		"registers": {
+			"patterns": [
+				{
+					"name": "variable.other.register.sass",
+					"match": "\\b(?i)(RZ|R[0-9]{1,3})\\b"
+				},
+				{
+					"name": "variable.other.register.predicate.sass",
+					"match": "\\b(?i)(PT|P[0-9])\\b"
+				},
+				{
+					"name": "variable.other.register.uniform.sass",
+					"match": "\\b(?i)(URZ|UR[0-9]{1,2})\\b"
 				}
 			]
 		}
