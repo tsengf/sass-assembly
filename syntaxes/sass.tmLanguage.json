@@ -2,50 +2,56 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "SASS Assembly",
 	"scopeName": "source.sass.assembly",
+	"fileTypes": ["sass-assembly"],
 	"patterns": [
 		{
 			"include": "#comments"
 		},
 		{
-			"include": "#constants"
-		},
-		{
 			"include": "#instructions"
-		},
-		{
-			"include": "#labels"
-		},
-		{
-			"include": "#predicates"
-		},
-		{
-			"include": "#registers"
 		}
 	],
 	"repository": {
 		"comments": {
-            "match": ";.*$",
-            "name": "comment.line.semicolon.assembly"
-		},
-	    "constants": {
-		    "match": "\\b(0x[a-fA-F0-9]+|[0-9]+h?|[01]+b)\\b",
-		    "name": "constant.numeric.assembly"
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.sass",
+					"match": "//.*$",
+				},
+				{
+					"name": "comment.block.sass",
+					"begin": "/\\*",
+					"end": "\\*/",
+				}
+			]
 		},
 	    "instructions": {
-		    "match": "\\b(?i)(BRA|BSSY|BSYNC|C2SR|CALL|CCTL|EXIT|IADD3|IMAD|ISETP|LDC|LDG|LEPC|MOV|NOP|S2R|SHF|STG|UIADD3|ULDC|ULOP3|VIADD)\\b",
-		    "name": "keyword.control keyword.control.assembly"
-		},
-		"labels": {
-			"match": "\\.L_x_[0-9]+",
-			"name": "entity.name.label.assembly"
-		},
-	    "predicates": {
-		    "match": "\\b(?i)(PT|P[0-9])\\b",
-		    "name": "variable.register.assembly"
-		},
-	    "registers": {
-		    "match": "\\b(?i)(RZ|R[0-9]{1,2})\\b",
-		    "name": "variable.register.assembly"
+			"patterns": [
+				{
+					"name": "keyword.instruction.arithmetic.sass",
+					"match": "\\b(?i)(add)\\b",
+				},
+				{
+					"name": "keyword.instruction.comparison.sass",
+					"match": "\\b(?i)(set)\\b",
+				},
+				{
+					"name": "keyword.instruction.logic.sass",
+					"match": "\\b(?i)(and)\\b",
+				},
+				{
+					"name": "keyword.instruction.movement.sass",
+					"match": "\\b(?i)(mov)\\b",
+				},
+				{
+					"name": "keyword.instruction.control.sass",
+					"match": "\\b(?i)(bra)\\b",
+				},
+				{
+					"name": "keyword.instruction.misc.sass",
+					"match": "\\b(?i)(nop)\\b",
+				}
+			]
 		}
 	}
 }
