@@ -1,0 +1,36 @@
+{
+  "name": "sass",
+  "displayName": "SASS Assembly",
+  "description": "Syntax highlighting for NVIDIA SASS assembly. Associates *.sass with language \"sass-assembly\" so it is not opened as CSS Sass. To use indented CSS Sass again, set files.associations for *.sass to \"sass\" in settings.",
+  "publisher": "local-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/local-dev/sass"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "configurationDefaults": {
+      "files.associations": {
+        "*.sass": "sass-assembly",
+        "**/*.sass": "sass-assembly"
+      }
+    },
+    "languages": [{
+      "id": "sass-assembly",
+      "aliases": ["SASS Assembly", "sass-assembly"],
+      "extensions": [".sass"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "sass-assembly",
+      "scopeName": "source.sass.assembly",
+      "path": "./syntaxes/sass.tmLanguage.json"
+    }]
+  }
+}
