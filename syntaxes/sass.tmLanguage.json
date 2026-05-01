@@ -37,19 +37,23 @@
 				}
 			]
 		},
-		"directives": {
-			"patterns": [
-				{
-					"name": "keyword.directive.sass",
-					"match": "(?i)(?<![\\w.])(\\.section|\\.align|\\.global|\\.type|\\.size|\\.other)\\b"
-				}
-			]
-		},
 		"constants": {
 			"patterns": [
 				{
 					"name": "constant.numeric.hex.sass",
-					"match": "(?i)\\b0[x][0-9a-f]+\\b"
+					"match": "(?i)(?<![\\w.])0[x][0-9a-f]+\\b"
+				},
+				{
+					"name": "constant.numeric.decimal.sass",
+					"match": "(?i)(?<![\\w.])[0-9]+\\b"
+				}
+			]
+		},
+		"directives": {
+			"patterns": [
+				{
+					"name": "keyword.directive.sass",
+					"match": "(?i)(?<![\\w.])(\\.align|\\.byte|\\.dword|\\.global|\\.other|\\.type|\\.section|\\.sectionflags|\\.short|\\.size|\\.tkinfo|\\.word|\\.zero)\\b"
 				}
 			]
 		},
@@ -89,7 +93,7 @@
 			"patterns": [
 			  {
 				"name": "entity.name.section.sass",
-				"match": "\\.L_[A-Za-z0-9_]+(?::)?"
+				"match": "(?<![\\w.])\\.L_[A-Za-z0-9_]+(?::)?"
 			  }
 			]
 		},
