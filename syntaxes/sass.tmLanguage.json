@@ -8,13 +8,16 @@
 			"include": "#comments"
 		},
 		{
-			"include": "#registers"
+			"include": "#directives"
 		},
 		{
 			"include": "#instructions"
 		},
 		{
 			"include": "#labels"
+		},
+		{
+			"include": "#registers"
 		}
 	],
 	"repository": {
@@ -28,6 +31,14 @@
 					"name": "comment.block.sass",
 					"begin": "/\\*",
 					"end": "\\*/"
+				}
+			]
+		},
+		"directives": {
+			"patterns": [
+				{
+					"name": "keyword.directive.sass",
+					"match": "\\b(?i)(\\.section|\\.align|\\.global|\\.type|\\.size|\\.other)\\b"
 				}
 			]
 		},
@@ -76,6 +87,10 @@
 				{
 					"name": "entity.name.class.register.sass",
 					"match": "\\b(?i)(rz|r[0-9]{1,3})\\b"
+				},
+				{
+					"name": "entity.name.class.register.barrier.sass",
+					"match": "\\b(?i)(b[0-9])\\b"
 				},
 				{
 					"name": "entity.name.class.register.predicate.sass",
