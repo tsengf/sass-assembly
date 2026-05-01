@@ -38,7 +38,7 @@
 			"patterns": [
 				{
 					"name": "keyword.directive.sass",
-					"match": "\\b(?i)(\\.section|\\.align|\\.global|\\.type|\\.size|\\.other)\\b"
+					"match": "(?i)(?<![\\w.])(\\.section|\\.align|\\.global|\\.type|\\.size|\\.other)\\b"
 				}
 			]
 		},
@@ -46,31 +46,31 @@
 			"patterns": [
 				{
 					"name": "keyword.instruction.arithmetic.sass",
-					"match": "\\b(?i)(add|iadd3|imad|viadd)\\b"
+					"match": "(?i)(?<![\\w.])(add|iadd3|imad|viadd)\\b"
 				},
 				{
 					"name": "keyword.instruction.comparison.sass",
-					"match": "\\b(?i)(isetp)\\b"
+					"match": "(?i)(?<![\\w.])(isetp)\\b"
 				},
 				{
 					"name": "keyword.instruction.logic.sass",
-					"match": "\\b(?i)(and|shf)\\b"
+					"match": "(?i)(?<![\\w.])(and|shf)\\b"
 				},
 				{
 					"name": "keyword.instruction.movement.sass",
-					"match": "\\b(?i)(c2sr|cs2r|ldg|ldc|mov|p2r|stg|s2r|uldc)\\b"
+					"match": "(?i)(?<![\\w.])(c2sr|cs2r|ldg|ldc|mov|p2r|stg|s2r|uldc)\\b"
 				},
 				{
 					"name": "keyword.instruction.control.sass",
-					"match": "\\b(?i)(bra|call|exit)\\b"
+					"match": "(?i)(?<![\\w.])(bra|call|exit)\\b"
 				},
 				{
 					"name": "keyword.instruction.synchronization.sass",
-					"match": "\\b(?i)(bsync)\\b"
+					"match": "(?i)(?<![\\w.])(bsync)\\b"
 				},
 				{
 					"name": "keyword.instruction.misc.sass",
-					"match": "\\b(?i)(nop|bssy|lepc|yield)\\b"
+					"match": "(?i)(?<![\\w.])(nop|bssy|lepc|yield)\\b"
 				}
 			]
 		},
@@ -86,19 +86,19 @@
 			"patterns": [
 				{
 					"name": "entity.name.class.register.sass",
-					"match": "\\b(?i)(rz|r[0-9]{1,3})\\b"
+					"match": "(?i)(?<![\\w.])(rz|r[0-9]{1,3})\\b"
 				},
 				{
 					"name": "entity.name.class.register.barrier.sass",
-					"match": "\\b(?i)(b[0-9])\\b"
+					"match": "(?i)(?<![\\w.])(b[0-9])\\b"
 				},
 				{
 					"name": "entity.name.class.register.predicate.sass",
-					"match": "\\b(?i)(pt|p[0-9])\\b"
+					"match": "(?i)(?<![\\w.])(pt|p[0-9])\\b"
 				},
 				{
 					"name": "entity.name.class.register.uniform.sass",
-					"match": "\\b(?i)(urz|ur[0-9]{1,2})\\b"
+					"match": "(?i)(?<![\\w.])(urz|ur[0-9]{1,2})\\b"
 				}
 			]
 		}
