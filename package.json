@@ -17,8 +17,7 @@
   "contributes": {
     "configurationDefaults": {
       "files.associations": {
-        "*.sass": "sass-assembly",
-        "**/*.sass": "sass-assembly"
+        "*.sass": "sass-assembly"
       }
     },
     "languages": [{

@@ -8,13 +8,13 @@
 			"include": "#comments"
 		},
 		{
+			"include": "#registers"
+		},
+		{
 			"include": "#instructions"
 		},
 		{
 			"include": "#labels"
-		},
-		{
-			"include": "#registers"
 		}
 	],
 	"repository": {
@@ -22,7 +22,7 @@
 			"patterns": [
 				{
 					"name": "comment.line.double-slash.sass",
-					"match": "//.*$"
+					"match": "//[^\\n]*"
 				},
 				{
 					"name": "comment.block.sass",
@@ -74,15 +74,15 @@
 		"registers": {
 			"patterns": [
 				{
-					"name": "variable.other variable.other.register.sass",
+					"name": "entity.name.class.register.sass",
 					"match": "\\b(?i)(rz|r[0-9]{1,3})\\b"
 				},
 				{
-					"name": "variable.other variable.other.register.predicate.sass",
+					"name": "entity.name.class.register.predicate.sass",
 					"match": "\\b(?i)(pt|p[0-9])\\b"
 				},
 				{
-					"name": "variable.other variable.other.register.uniform.sass",
+					"name": "entity.name.class.register.uniform.sass",
 					"match": "\\b(?i)(urz|ur[0-9]{1,2})\\b"
 				}
 			]
