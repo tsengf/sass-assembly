@@ -11,6 +11,9 @@
 			"include": "#directives"
 		},
 		{
+			"include": "#constants"
+		},
+		{
 			"include": "#instructions"
 		},
 		{
@@ -39,6 +42,14 @@
 				{
 					"name": "keyword.directive.sass",
 					"match": "(?i)(?<![\\w.])(\\.section|\\.align|\\.global|\\.type|\\.size|\\.other)\\b"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.numeric.hex.sass",
+					"match": "(?i)\\b0[x][0-9a-f]+\\b"
 				}
 			]
 		},
@@ -95,6 +106,10 @@
 				{
 					"name": "entity.name.class.register.predicate.sass",
 					"match": "(?i)(?<![\\w.])(pt|p[0-9])\\b"
+				},
+				{
+					"name": "entity.name.class.register.special.sass",
+					"match": "(?i)(?<![\\w.])(srz|sr_tid.x|sr_tid.y|sr_tid.z|sr_ctaid.x|sr_cgactaid|sr_clocklo|sr_laneid|sr_swinhi|sr_virtualsmid)\\b"
 				},
 				{
 					"name": "entity.name.class.register.uniform.sass",
