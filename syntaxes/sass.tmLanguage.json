@@ -53,7 +53,7 @@
 			"patterns": [
 				{
 					"name": "keyword.directive.sass",
-					"match": "(?i)(?<![\\w.])(\\.align|\\.byte|\\.dword|\\.global|\\.other|\\.type|\\.section|\\.sectionflags|\\.short|\\.size|\\.tkinfo|\\.word|\\.zero)\\b"
+					"match": "(?i)(?<![\\w.])(\\.align|\\.byte|\\.dword|\\.global|\\.other|\\.type|\\.section|\\.sectionflags|\\.short|\\.size|\\.tkinfo|\\.weak|\\.word|\\.zero)\\b"
 				}
 			]
 		},
@@ -61,7 +61,7 @@
 			"patterns": [
 				{
 					"name": "keyword.instruction.arithmetic.sass",
-					"match": "(?i)(?<![\\w.])(add|iadd3|imad|viadd)\\b"
+					"match": "(?i)(?<![\\w.])(add|iadd3|imad|uiadd3|viadd)\\b"
 				},
 				{
 					"name": "keyword.instruction.comparison.sass",
@@ -69,11 +69,11 @@
 				},
 				{
 					"name": "keyword.instruction.logic.sass",
-					"match": "(?i)(?<![\\w.])(and|shf)\\b"
+					"match": "(?i)(?<![\\w.])(and|shf|ulop3)\\b"
 				},
 				{
 					"name": "keyword.instruction.movement.sass",
-					"match": "(?i)(?<![\\w.])(c2sr|cs2r|ldg|ldc|mov|p2r|stg|s2r|uldc)\\b"
+					"match": "(?i)(?<![\\w.])(c2sr|cs2r|ldg|ldc|lea|mov|p2r|stg|s2r|s2ur|uldc)\\b"
 				},
 				{
 					"name": "keyword.instruction.control.sass",
