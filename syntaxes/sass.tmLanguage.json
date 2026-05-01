@@ -7,13 +7,19 @@
 			"include": "#comments"
 		},
 		{
+			"include": "#constants"
+		},
+		{
 			"include": "#instructions"
 		},
 		{
-			"include": "#registers"
+			"include": "#labels"
 		},
 		{
-			"include": "#constants"
+			"include": "#predicates"
+		},
+		{
+			"include": "#registers"
 		}
 	],
 	"repository": {
@@ -21,17 +27,25 @@
             "match": ";.*$",
             "name": "comment.line.semicolon.assembly"
 		},
-	    "instructions": {
-		    "match": "\\b(?i)(BRA|BSYNC|C22R|CALL|EXIT|IADD3|IMAD|ISETP|LDC|LDG|LEPC|NOP|S2R|SHF|STG)\\b",
-		    "name": "keyword.control keyword.control.assembly"
-		},
-	    "registers": {
-		    "match": "\\b(?i)(eax|ebx|ecx|edx|esp|ebp|esi|edi)\\b",
-		    "name": "variable.register.assembly"
-		},
 	    "constants": {
 		    "match": "\\b(0x[a-fA-F0-9]+|[0-9]+h?|[01]+b)\\b",
 		    "name": "constant.numeric.assembly"
+		},
+	    "instructions": {
+		    "match": "\\b(?i)(BRA|BSSY|BSYNC|C2SR|CALL|CCTL|EXIT|IADD3|IMAD|ISETP|LDC|LDG|LEPC|MOV|NOP|S2R|SHF|STG|UIADD3|ULDC|ULOP3|VIADD)\\b",
+		    "name": "keyword.control keyword.control.assembly"
+		},
+		"labels": {
+			"match": "\\.L_x_[0-9]+",
+			"name": "entity.name.label.assembly"
+		},
+	    "predicates": {
+		    "match": "\\b(?i)(PT|P[0-9])\\b",
+		    "name": "variable.register.assembly"
+		},
+	    "registers": {
+		    "match": "\\b(?i)(RZ|R[0-9]{1,2})\\b",
+		    "name": "variable.register.assembly"
 		}
 	}
 }
