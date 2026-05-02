@@ -61,7 +61,7 @@
 			"patterns": [
 				{
 					"name": "keyword.instruction.arithmetic.sass",
-					"match": "(?i)(?<![\\w.])(add|dadd|dmul|fadd|ffma|fmul|hfma2|iadd3|imad|mufu|redux|uiadd3|uimad|ushf|viadd|viadddmnmxb"
+					"match": "(?i)(?<![\\w.])(add|dadd|dmul|fadd|ffma|fmul|hfma2|iadd3|imad|mufu|redux|uiadd3|uimad|ushf|viadd|viadddmnmxb)\\b"
 				},
 				{
 					"name": "keyword.instruction.bitwise.sass",
@@ -85,7 +85,7 @@
 				},
 				{
 					"name": "keyword.instruction.misc.sass",
-					"match": "(?i)(?<![\\w.])(nop|lepc|yield|cctl|utmacmdflush)\\b"
+					"match": "(?i)(?<![\\w.])(cctl|nop|yield|utmacmdflush)\\b"
 				},
 				{
 					"name": "keyword.instruction.movement.sass",
