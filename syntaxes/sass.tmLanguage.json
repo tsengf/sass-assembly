@@ -61,31 +61,39 @@
 			"patterns": [
 				{
 					"name": "keyword.instruction.arithmetic.sass",
-					"match": "(?i)(?<![\\w.])(add|iadd3|imad|uiadd3|viadd)\\b"
+					"match": "(?i)(?<![\\w.])(add|dadd|dmul|fadd|ffma|fmul|hfma2|iadd3|imad|mufu|redux|uiadd3|uimad|ushf|viadd|viadddmnmxb"
+				},
+				{
+					"name": "keyword.instruction.bitwise.sass",
+					"match": "(?i)(?<![\\w.])(and|brev|flo|lop3|plop3|popc|prmt|shf|shfl|ulop3|uprmt)\\b"
+				},
+				{
+					"name": "keyword.instruction.collective.sass",
+					"match": "(?i)(?<![\\w.])(elect|endcollective|match)\\b"
 				},
 				{
 					"name": "keyword.instruction.comparison.sass",
-					"match": "(?i)(?<![\\w.])(isetp)\\b"
-				},
-				{
-					"name": "keyword.instruction.logic.sass",
-					"match": "(?i)(?<![\\w.])(and|shf|ulop3)\\b"
-				},
-				{
-					"name": "keyword.instruction.movement.sass",
-					"match": "(?i)(?<![\\w.])(c2sr|cs2r|ldg|ldc|lea|mov|p2r|stg|s2r|s2ur|uldc)\\b"
+					"match": "(?i)(?<![\\w.])(fsetp|isetp|uisetp|vote|voteu)\\b"
 				},
 				{
 					"name": "keyword.instruction.control.sass",
-					"match": "(?i)(?<![\\w.])(bra|call|exit)\\b"
+					"match": "(?i)(?<![\\w.])(bra|bssy|call|exit|lepc|ret)\\b"
 				},
 				{
-					"name": "keyword.instruction.synchronization.sass",
-					"match": "(?i)(?<![\\w.])(bsync)\\b"
+					"name": "keyword.instruction.conversion.sass",
+					"match": "(?i)(?<![\\w.])(f2f|f2i|i2f)\\b"
 				},
 				{
 					"name": "keyword.instruction.misc.sass",
-					"match": "(?i)(?<![\\w.])(nop|bssy|lepc|yield)\\b"
+					"match": "(?i)(?<![\\w.])(nop|lepc|yield|cctl|utmacmdflush)\\b"
+				},
+				{
+					"name": "keyword.instruction.movement.sass",
+					"match": "(?i)(?<![\\w.])(c2sr|cs2r|fsel|ld|ldc|ldg|ldgsts|ldl|lds|lea|mov|p2r|r2ur|sel|st|stg|stl|sts|s2r|s2ur|ublkcp|ublkpf|uldc|ulea|umov|usel|viadd)\\b"
+				},
+				{
+					"name": "keyword.instruction.synchronization.sass",
+					"match": "(?i)(?<![\\w.])(arrives|bar|bsync|depbar|fence|membar|syncs|warpsync|yield)\\b"
 				}
 			]
 		},
