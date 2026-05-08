@@ -89,7 +89,7 @@
 				},
 				{
 					"name": "keyword.instruction.movement.sass",
-					"match": "(?i)(?<![\\w.])(c2sr|cs2r|fsel|ld|ldc|ldg|ldgsts|ldl|lds|lea|mov|p2r|r2ur|sel|st|stg|stl|sts|s2r|s2ur|ublkcp|ublkpf|uldc|ulea|umov|usel|viadd)\\b"
+					"match": "(?i)(?<![\\w.])(c2sr|cs2r|discard|fsel|ld|ldc|ldg|ldgsts|ldl|lds|lea|mov|p2r|r2ur|sel|st|stg|stl|sts|s2r|s2ur|ublkcp|ublkpf|uldc|ulea|umov|usel|viadd)\\b"
 				},
 				{
 					"name": "keyword.instruction.synchronization.sass",
