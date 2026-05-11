@@ -1,4 +1,4 @@
-# sass README
+# SASS Assenbly README
 
 This is the README for SASS, a sass language extension for VSCode.
 
@@ -14,7 +14,19 @@ For example if there is an image subfolder under your extension project workspac
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### MacOS
+
+Install nodejs
+
+`port install nodejs24`
+
+Install npm.
+
+`port install npm11`
+
+Then install [vcse](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
+
+`npm install -g @vscode/vsce`
 
 ## Extension Settings
 
@@ -29,23 +41,15 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Opcodes extended with .XX are not yet supported.
 
 ## Release Notes
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### 0.0.1
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release of SASS Assembly.
 
 ---
 
