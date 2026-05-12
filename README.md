@@ -1,4 +1,4 @@
-# SASS Assenbly README
+# SASS Assembly README
 
 This is the README for SASS, a sass language extension for VSCode.
 
@@ -27,6 +27,18 @@ Install npm.
 Then install [vcse](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
 
 `npm install -g @vscode/vsce`
+
+### Windows
+
+## Build
+
+Run ./package.sh
+
+## Installation
+
+In Cursor, Cmd - Shift - P
+
+Type Extension: Install from VSIX, select the sass-version.vsix file
 
 ## Extension Settings
 
