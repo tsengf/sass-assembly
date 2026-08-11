@@ -14,6 +14,10 @@
   "categories": [
     "Programming Languages"
   ],
+  "scripts": {
+    "check": "node scripts/validate-grammar.js",
+    "package": "npm run check && vsce package --no-dependencies"
+  },
   "contributes": {
     "configurationDefaults": {
       "files.associations": {

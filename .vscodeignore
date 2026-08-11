@@ -1,4 +1,10 @@
+.git/**
 .vscode/**
 .vscode-test/**
+.gitattributes
 .gitignore
+.vscodeignore
+*.vsix
+package.sh
+scripts/**
 vsc-extension-quickstart.md

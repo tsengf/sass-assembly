@@ -41,11 +41,11 @@
 			"patterns": [
 				{
 					"name": "constant.numeric.hex.sass",
-					"match": "(?i)(?<![\\w.])0[x][0-9a-f]+\\b"
+					"match": "(?<![\\w.])0[xX][0-9A-Fa-f]+\\b"
 				},
 				{
 					"name": "constant.numeric.decimal.sass",
-					"match": "(?i)(?<![\\w.])[0-9]+\\b"
+					"match": "(?<![\\w.])[0-9]+\\b"
 				}
 			]
 		},
@@ -57,7 +57,7 @@
 				}
 			]
 		},
-	    "instructions": {
+		"instructions": {
 			"patterns": [
 				{
 					"name": "keyword.instruction.arithmetic.sass",
@@ -89,11 +89,11 @@
 				},
 				{
 					"name": "keyword.instruction.movement.sass",
-					"match": "(?i)(?<![\\w.])(c2sr|cs2r|discard|fsel|ld|ldc|ldg|ldgsts|ldl|lds|lea|mov|p2r|r2ur|sel|st|stg|stl|sts|s2r|s2ur|ublkcp|ublkpf|uldc|ulea|umov|usel|viadd)\\b"
+					"match": "(?i)(?<![\\w.])(c2sr|cs2r|discard|fsel|ld|ldc|ldg|ldgsts|ldl|lds|lea|mov|p2r|r2ur|sel|st|stg|stl|sts|s2r|s2ur|ublkcp|ublkpf|uldc|ulea|umov|usel)\\b"
 				},
 				{
 					"name": "keyword.instruction.synchronization.sass",
-					"match": "(?i)(?<![\\w.])(arrives|bar|bsync|depbar|fence|membar|syncs|warpsync|yield)\\b"
+					"match": "(?i)(?<![\\w.])(arrives|bar|bsync|depbar|fence|membar|syncs|warpsync)\\b"
 				}
 			]
 		},
@@ -121,7 +121,7 @@
 				},
 				{
 					"name": "entity.name.class.register.special.sass",
-					"match": "(?i)(?<![\\w.])(srz|sr_tid.x|sr_tid.y|sr_tid.z|sr_ctaid.x|sr_cgactaid|sr_clocklo|sr_laneid|sr_swinhi|sr_virtualsmid)\\b"
+					"match": "(?i)(?<![\\w.])(srz|sr_tid\\.[xyz]|sr_ctaid\\.x|sr_cgactaid|sr_clocklo|sr_laneid|sr_swinhi|sr_virtualsmid)\\b"
 				},
 				{
 					"name": "entity.name.class.register.uniform.sass",
