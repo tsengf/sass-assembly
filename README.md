@@ -1,81 +1,104 @@
-# SASS Assembly README
+# SASS Assembly
 
-This is the README for SASS, a sass language extension for VSCode.
+Syntax highlighting for NVIDIA GPU SASS assembly in VS Code and Cursor.
+The extension associates `.sass` files with the `sass-assembly` language.
 
 ## Features
 
-Right now, SASS only syntax highlights .sass files.
+- Instruction highlighting with separate scopes for arithmetic, bitwise,
+  comparison, control, conversion, memory, movement, matrix, texture, uniform,
+  synchronization, collective, and miscellaneous operations.
+- Dotted instruction modifiers such as `LDG.E.SYS` and `HMMA.1688.F32`.
+- General, uniform, predicate, uniform predicate, barrier, and special registers.
+- Hexadecimal, signed integer, decimal, and scientific-notation constants.
+- ELF directives, labels, quoted metadata, and line and block comments.
+- Bracket matching and automatic closing of brackets and quotes.
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-### MacOS
-
-Install nodejs
-
-`port install nodejs24`
-
-Install npm.
-
-`port install npm11`
-
-Then install [vcse](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
-
-`npm install -g @vscode/vsce`
-
-### Windows
-
-## Build
-
-Run ./package.sh
+```sass-assembly
+.section .text.example,"ax",@progbits
+example:
+    /*0000*/ S2R R0, SR_CTAID.Y;
+    /*0010*/ @!P0 LDG.E.SYS R2, [R4];
+    /*0020*/ FADD.FTZ R3, R2, -3.5e-2;
+    /*0030*/ HMMA.1688.F32 R4, R8, R12, R4;
+    /*0040*/ EXIT;
+```
 
 ## Installation
 
-In Cursor, Cmd - Shift - P
+Use VS Code 1.74 or later, or a compatible Cursor version. A CUDA toolkit or
+GPU is not required to highlight an existing disassembly file.
 
-Type Extension: Install from VSIX, select the sass-version.vsix file
+1. Obtain the VSIX by building this repository or downloading a CI artifact.
+2. Open the Command Palette with `Cmd+Shift+P` on macOS or `Ctrl+Shift+P` on
+   Windows and Linux.
+3. Choose **Extensions: Install from VSIX…** and select `sass-0.0.2.vsix`.
+4. Open a `.sass` file. The language indicator should show **SASS Assembly**.
 
-## Extension Settings
+Alternatively, run `code --install-extension sass-0.0.2.vsix` or
+`cursor --install-extension sass-0.0.2.vsix` with the editor's CLI on your PATH.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## File associations
 
-For example:
+This extension contributes a default association of `*.sass` with
+`sass-assembly`. For a workspace using indented CSS Sass, override it in
+`.vscode/settings.json`:
 
-This extension contributes the following settings:
+```json
+{
+  "files.associations": {
+    "*.sass": "sass"
+  }
+}
+```
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+To highlight assembly files using another extension, associate that pattern with
+`sass-assembly`. The extension adds no custom settings.
 
-## Known Issues
+## Build and development
 
-Opcodes extended with .XX are not yet supported.
+Install Node.js 22 or later and npm on macOS, Windows, or Linux. Node.js 24 is
+used by CI. Packaging and test dependencies are local and pinned in
+`package-lock.json`; no global `vsce` installation is required.
 
-## Release Notes
+```sh
+npm ci
+npm test
+npm run package
+```
 
-Users appreciate release notes as you update your extension.
+`npm run package` runs validation and tokenization tests, then creates
+`sass-0.0.2.vsix`. On macOS and Linux, `./package.sh` is also available after
+`npm ci`; Windows users can run the npm commands directly.
 
-### 0.0.1
+Open the repository in VS Code and press `F5` to launch an Extension Development
+Host. Open `tests/fixtures/sample.sass` to inspect the grammar with your theme.
+Run **Developer: Inspect Editor Tokens and Scopes** to examine individual tokens.
 
-Initial release of SASS Assembly.
+`npm run check` validates manifest references, language configuration, opcode
+uniqueness, and every grammar regex using Oniguruma. `npm test` also exercises
+the VS Code TextMate tokenizer against the opcode corpus and representative
+disassembly, checking modifiers, boundaries, literals, comments, and metadata.
+GitHub Actions runs packaging on Linux, Windows, and macOS and uploads VSIX files.
 
----
+## Coverage and limitations
 
-## Working with Markdown
+The opcode corpus covers the instruction tables for Maxwell/Pascal, Volta,
+Turing, Ampere/Ada, Hopper, and Blackwell in
+[NVIDIA's CUDA 12.9.1 Binary Utilities reference](https://docs.nvidia.com/cuda/archive/12.9.1/cuda-binary-utilities/index.html#instruction-set-reference),
+plus previously supported spellings. `tests/fixtures/opcodes.json` records the
+reference and coverage list. This is syntax highlighting, not an assembler or
+an architecture-specific instruction validator: accepting an opcode does not
+mean it is available on every GPU. Undocumented instructions and future
+architecture additions may need grammar updates.
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+Special register names beginning with `SR_` are highlighted generically.
+Instruction modifiers are highlighted without validating their meaning.
+Quoted strings support double quotes; PTX highlighting, completion, diagnostics,
+debugging, and disassembly generation are outside this extension's scope.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+## Releases
 
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+See [CHANGELOG.md](CHANGELOG.md). The manifest uses publisher `local-dev` for
+local VSIX installation. Marketplace publication requires an owned publisher
+ID and its authentication credentials.

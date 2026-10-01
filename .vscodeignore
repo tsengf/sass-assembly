@@ -1,10 +1,7 @@
-.git/**
-.vscode/**
-.vscode-test/**
-.gitattributes
-.gitignore
-.vscodeignore
-*.vsix
-package.sh
-scripts/**
-vsc-extension-quickstart.md
+**
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE.md
+!language-configuration.json
+!syntaxes/**

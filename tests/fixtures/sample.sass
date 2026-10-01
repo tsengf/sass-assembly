@@ -1,0 +1,16 @@
+// Synthetic disassembly exercising several instruction families.
+.headerflags @"EF_CUDA_SM90"
+.section .text.example,"ax",@progbits
+.sectioninfo @"SHI_REGISTERS=16"
+.global example
+.type example,@function
+example:
+/*0000*/ S2R R0, SR_CTAID.Y;
+/*0010*/ @!P0 LDG.E.SYS R2, [R4];
+/*0020*/ FADD.FTZ R3, R2, -3.5e-2;
+/*0030*/ HMMA.1688.F32 R4, R8, R12, R4;
+/*0040*/ ATOM.E.ADD R0, [R2], R3;
+/*0050*/ @UP0 UIADD3 UR4, UR5, 0x10, URZ;
+.L_1:
+/*0060*/ BRA `(.L_1);
+/*0070*/ EXIT;

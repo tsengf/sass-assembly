@@ -5,6 +5,8 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const jsonc = require('jsonc-parser');
+const { loadWASM, OnigScanner } = require('vscode-oniguruma');
 
 const root = path.resolve(__dirname, '..');
 const manifest = readJson('package.json');
@@ -21,6 +23,10 @@ assert.ok(
   fs.existsSync(path.join(root, manifest.contributes.languages[0].configuration)),
   'Language configuration referenced by package.json must exist'
 );
+const configurationErrors = [];
+jsonc.parse(fs.readFileSync(path.join(root, manifest.contributes.languages[0].configuration), 'utf8'), configurationErrors);
+assert.deepEqual(configurationErrors, [], 'Language configuration must be valid JSONC');
+assert.equal(grammarContribution.language, manifest.contributes.languages[0].id);
 
 const includes = grammar.patterns.map(({ include }) => include);
 assert.equal(new Set(includes).size, includes.length, 'Top-level includes must be unique');
@@ -46,9 +52,21 @@ for (const { name, match } of grammar.repository.instructions.patterns) {
   }
 }
 
-console.log(
-  `Validated ${opcodeOwners.size} opcodes across ${opcodeOwners.size ? grammar.repository.instructions.patterns.length : 0} categories.`
-);
+async function validateRegexes() {
+  await loadWASM(fs.readFileSync(require.resolve('vscode-oniguruma/release/onig.wasm')).buffer);
+  function visit(value) {
+    if (!value || typeof value !== 'object') return;
+    for (const [key, child] of Object.entries(value)) {
+      if (['match', 'begin', 'end', 'while'].includes(key) && typeof child === 'string') {
+        const scanner = new OnigScanner([child]);
+        scanner.dispose();
+      } else visit(child);
+    }
+  }
+  visit(grammar);
+  console.log(`Validated ${opcodeOwners.size} opcodes, configuration, and Oniguruma regexes.`);
+}
+validateRegexes().catch(error => { console.error(error); process.exitCode = 1; });
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));

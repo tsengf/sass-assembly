@@ -1,133 +1,285 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "SASS Assembly",
-	"scopeName": "source.sass.assembly",
-	"fileTypes": ["sass-assembly"],
-	"patterns": [
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#directives"
-		},
-		{
-			"include": "#constants"
-		},
-		{
-			"include": "#instructions"
-		},
-		{
-			"include": "#labels"
-		},
-		{
-			"include": "#registers"
-		}
-	],
-	"repository": {
-		"comments": {
-			"patterns": [
-				{
-					"name": "comment.line.double-slash.sass",
-					"match": "//[^\\n]*"
-				},
-				{
-					"name": "comment.block.sass",
-					"begin": "/\\*",
-					"end": "\\*/"
-				}
-			]
-		},
-		"constants": {
-			"patterns": [
-				{
-					"name": "constant.numeric.hex.sass",
-					"match": "(?<![\\w.])0[xX][0-9A-Fa-f]+\\b"
-				},
-				{
-					"name": "constant.numeric.decimal.sass",
-					"match": "(?<![\\w.])[0-9]+\\b"
-				}
-			]
-		},
-		"directives": {
-			"patterns": [
-				{
-					"name": "keyword.directive.sass",
-					"match": "(?i)(?<![\\w.])(\\.align|\\.byte|\\.dword|\\.global|\\.other|\\.type|\\.section|\\.sectionflags|\\.short|\\.size|\\.tkinfo|\\.weak|\\.word|\\.zero)\\b"
-				}
-			]
-		},
-		"instructions": {
-			"patterns": [
-				{
-					"name": "keyword.instruction.arithmetic.sass",
-					"match": "(?i)(?<![\\w.])(add|dadd|dmul|fadd|ffma|fmul|hfma2|iadd3|imad|mufu|redux|uiadd3|uimad|ushf|viadd|viadddmnmxb)\\b"
-				},
-				{
-					"name": "keyword.instruction.bitwise.sass",
-					"match": "(?i)(?<![\\w.])(and|brev|flo|lop3|plop3|popc|prmt|shf|shfl|ulop3|uprmt)\\b"
-				},
-				{
-					"name": "keyword.instruction.collective.sass",
-					"match": "(?i)(?<![\\w.])(elect|endcollective|match)\\b"
-				},
-				{
-					"name": "keyword.instruction.comparison.sass",
-					"match": "(?i)(?<![\\w.])(fsetp|isetp|uisetp|vote|voteu)\\b"
-				},
-				{
-					"name": "keyword.instruction.control.sass",
-					"match": "(?i)(?<![\\w.])(bra|bssy|call|exit|lepc|ret)\\b"
-				},
-				{
-					"name": "keyword.instruction.conversion.sass",
-					"match": "(?i)(?<![\\w.])(f2f|f2i|i2f)\\b"
-				},
-				{
-					"name": "keyword.instruction.misc.sass",
-					"match": "(?i)(?<![\\w.])(cctl|nop|yield|utmacmdflush)\\b"
-				},
-				{
-					"name": "keyword.instruction.movement.sass",
-					"match": "(?i)(?<![\\w.])(c2sr|cs2r|discard|fsel|ld|ldc|ldg|ldgsts|ldl|lds|lea|mov|p2r|r2ur|sel|st|stg|stl|sts|s2r|s2ur|ublkcp|ublkpf|uldc|ulea|umov|usel)\\b"
-				},
-				{
-					"name": "keyword.instruction.synchronization.sass",
-					"match": "(?i)(?<![\\w.])(arrives|bar|bsync|depbar|fence|membar|syncs|warpsync)\\b"
-				}
-			]
-		},
-		"labels": {
-			"patterns": [
-			  {
-				"name": "entity.name.section.sass",
-				"match": "(?<![\\w.])\\.L_[A-Za-z0-9_]+(?::)?"
-			  }
-			]
-		},
-		"registers": {
-			"patterns": [
-				{
-					"name": "entity.name.class.register.sass",
-					"match": "(?i)(?<![\\w.])(rz|r[0-9]{1,3})\\b"
-				},
-				{
-					"name": "entity.name.class.register.barrier.sass",
-					"match": "(?i)(?<![\\w.])(b[0-9])\\b"
-				},
-				{
-					"name": "entity.name.class.register.predicate.sass",
-					"match": "(?i)(?<![\\w.])(pt|p[0-9])\\b"
-				},
-				{
-					"name": "entity.name.class.register.special.sass",
-					"match": "(?i)(?<![\\w.])(srz|sr_tid\\.[xyz]|sr_ctaid\\.x|sr_cgactaid|sr_clocklo|sr_laneid|sr_swinhi|sr_virtualsmid)\\b"
-				},
-				{
-					"name": "entity.name.class.register.uniform.sass",
-					"match": "(?i)(?<![\\w.])(urz|ur[0-9]{1,2})\\b"
-				}
-			]
-		}
-	}
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "SASS Assembly",
+  "scopeName": "source.sass.assembly",
+  "fileTypes": [
+    "sass"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#labels"
+    },
+    {
+      "include": "#directives"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#instructions"
+    },
+    {
+      "include": "#registers"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.sass",
+          "match": "//[^\\n]*"
+        },
+        {
+          "name": "comment.block.sass",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.sass",
+          "match": "(?<![\\w.])[+-]?0[xX][0-9A-Fa-f]+\\b"
+        },
+        {
+          "name": "constant.numeric.float.sass",
+          "match": "(?i)(?<![\\w.])[+-]?(?:[0-9]+\\.[0-9]*|\\.[0-9]+)(?:e[+-]?[0-9]+)?(?![\\w.])|(?<![\\w.])[+-]?[0-9]+e[+-]?[0-9]+(?![\\w.])"
+        },
+        {
+          "name": "constant.numeric.decimal.sass",
+          "match": "(?<![\\w.])[+-]?[0-9]+\\b(?!\\.)"
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "name": "keyword.directive.sass",
+          "match": "(?i)(?<![\\w.])\\.(?:align|byte|dword|global|other|type|section|sectionflags|sectioninfo|short|size|tkinfo|weak|word|zero|headerflags|elftype)\\b"
+        }
+      ]
+    },
+    "instructions": {
+      "patterns": [
+        {
+          "name": "keyword.instruction.arithmetic.sass",
+          "match": "(?i)(?<![\\w.])(add|dadd|dfma|dmnmx|dmul|dset|dsetp|fadd|fadd2|fadd32i|fchk|fcmp|ffma|ffma2|ffma32i|fhadd|fhfma|fmnmx|fmnmx3|fmul|fmul2|fmul32i|fset|fswzadd|hadd2|hadd2_32i|hfma2|hfma2_32i|hmnmx2|hmul2|hmul2_32i|hset2|hsetp2|iabs|iadd|iadd3|iadd32i|icmp|idp|idp4a|imad|imadsp|imnmx|imul|imul32i|iscadd|iscadd32i|iset|mufu|qadd4|qfma4|qmul4|redux|rro|uiadd3|uimad|ushf|vabsdiff|vabsdiff4|vhmnmx|viadd|viaddmnmx|vimnmx|vimnmx3|xmad)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.arithmetic.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.bitwise.sass",
+          "match": "(?i)(?<![\\w.])(and|bfe|bfi|bmsk|brev|flo|lop|lop3|lop32i|plop3|popc|prmt|shf|shfl|shl|shr|ulop3|uprmt)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.bitwise.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.collective.sass",
+          "match": "(?i)(?<![\\w.])(elect|endcollective|match)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.collective.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.comparison.sass",
+          "match": "(?i)(?<![\\w.])(cset|csetp|fsetp|isetp|pset|psetp|r2p|uisetp|vote|voteu)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.comparison.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.control.sass",
+          "match": "(?i)(?<![\\w.])(acqbulk|acqshminit|bmov|bpt|bra|break|brk|brx|brxu|bssy|cal|call|cgaerrbar|cont|exit|jcal|jmp|jmx|jmxu|kill|lepc|nanosleep|pbk|pcnt|pexit|preexit|pret|ret|rpcmov|rtt|ssy|sync)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.control.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.conversion.sass",
+          "match": "(?i)(?<![\\w.])(f2f|f2i|f2ip|frnd|i2f|i2fp|i2i|i2ip)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.conversion.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.matrix.sass",
+          "match": "(?i)(?<![\\w.])(bgmma|bmma|dmma|hgmma|hmma|igmma|imma|omma|qgmma|qmma|utchmma|utcimma|utcomma|utcqmma|warpgroup|warpgroupset)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.matrix.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.memory.sass",
+          "match": "(?i)(?<![\\w.])(atom|atomg|atoms|cctll|cctlt|errbar|ldgdepbar|ldgmc|ldsm|ldt|ldtm|qspc|red|redas|redg|stas|stsm|stt|sttm|suatom|suld|sured|sust|ublkred|utcatomsws|utcbar|utccp|utcshift|utmacctl|utmacmdflush|utmaldg|utmapf|utmaredg|utmastg)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.memory.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.misc.sass",
+          "match": "(?i)(?<![\\w.])(b2r|cctl|getlmembase|nop|pmtrig|r2b|setctaid|setlmembase|yield)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.misc.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.movement.sass",
+          "match": "(?i)(?<![\\w.])(c2sr|cs2r|discard|fsel|ld|ldc|ldg|ldgsts|ldl|lds|lea|mov|mov32i|movm|p2r|r2ur|s2r|s2ur|sel|sgxt|st|stg|stl|sts|ublkcp|ublkpf|uldc|ulea|umov|usel)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.movement.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.synchronization.sass",
+          "match": "(?i)(?<![\\w.])(arrives|bar|bsync|depbar|fence|membar|syncs|warpsync)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.synchronization.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.texture.sass",
+          "match": "(?i)(?<![\\w.])(tex|texs|tld|tld4|tld4s|tlds|tmml|txd|txq)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.texture.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        },
+        {
+          "name": "keyword.instruction.uniform.sass",
+          "match": "(?i)(?<![\\w.])(credux|cs2ur|ldcu|ubmsk|ubrev|ucgabar_arv|ucgabar_wait|uclea|uf2f|uf2fp|uf2i|uf2ip|ufadd|uffma|uflo|ufmnmx|ufmul|ufrnd|ufsel|ufset|ufsetp|ugetnextworkid|ui2f|ui2fp|ui2i|ui2ip|uiabs|uimnmx|ulepc|ulop|ulop32i|umemsets|up2ur|uplop3|upopc|upsetp|ur2up|uredgr|usetmaxreg|usgxt|ushl|ushr|ustgr|uviadd|uvimnmx|uvirtcount)\\b((?:\\.[A-Za-z0-9_]+)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.instruction.uniform.sass"
+            },
+            "2": {
+              "name": "storage.modifier.sass"
+            }
+          }
+        }
+      ]
+    },
+    "labels": {
+      "patterns": [
+        {
+          "name": "entity.name.label.sass",
+          "match": "(?<![\\w.])\\.L_[A-Za-z0-9_]+\\b:?"
+        },
+        {
+          "name": "entity.name.label.sass",
+          "match": "^\\s*[A-Za-z_.$][\\w.$]*:"
+        }
+      ]
+    },
+    "registers": {
+      "patterns": [
+        {
+          "name": "entity.name.class.register.sass",
+          "match": "(?i)(?<![\\w.])(rz|r[0-9]{1,3})\\b"
+        },
+        {
+          "name": "entity.name.class.register.barrier.sass",
+          "match": "(?i)(?<![\\w.])(b[0-9])\\b"
+        },
+        {
+          "name": "entity.name.class.register.predicate.sass",
+          "match": "(?i)(?<![\\w.])(pt|p[0-9])\\b"
+        },
+        {
+          "name": "entity.name.class.register.predicate.uniform.sass",
+          "match": "(?i)(?<![\\w.])(?:upt|up[0-9])\\b"
+        },
+        {
+          "name": "entity.name.class.register.special.sass",
+          "match": "(?i)(?<![\\w.])(?:sr_[A-Za-z0-9_]+(?:\\.[xyz])?|srz)\\b"
+        },
+        {
+          "name": "entity.name.class.register.uniform.sass",
+          "match": "(?i)(?<![\\w.])(urz|ur[0-9]{1,2})\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.sass",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.sass",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    }
+  }
 }
